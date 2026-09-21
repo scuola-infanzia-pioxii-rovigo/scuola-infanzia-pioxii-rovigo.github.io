@@ -1,6 +1,6 @@
 {
   "nome": "Sasha Poncina",
   "ruolo": "Educatrice per il doposcuola, formata nei bisogni dei bambini nella fascia d’età 6-10 anni.",
-  "foto": "../../assets/uploads/persona-sasha-poncina.webp",
+  "foto": "/src/assets/uploads/persona-sasha-poncina.webp",
   "ordine": 5
 }

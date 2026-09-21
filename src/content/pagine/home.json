@@ -1,7 +1,7 @@
 {
   "titolo": "Scuola dell’infanzia Pio XII",
   "sottotitolo": "Dal 1981 a Rovigo, una scuola costruita insieme alle famiglie.",
-  "foto": "../../assets/uploads/scuola-facciata.webp",
+  "foto": "/src/assets/uploads/scuola-facciata.webp",
   "fotoAlt": "La facciata blu della scuola dell’infanzia Pio XII, vista dal giardino",
   "intro": "Una scuola dell’infanzia autogestita, nata nel 1981 e riconosciuta dalla FISM come esperienza non parrocchiale all’interno del mondo cattolico. La partecipazione attiva dei genitori alla vita educativa ne è, da sempre, il fondamento.",
   "fatti": [

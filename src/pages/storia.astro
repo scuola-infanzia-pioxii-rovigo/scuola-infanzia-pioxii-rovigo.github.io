@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { resolveImage } from '../lib/images';
 
 const storia = (await getEntry('pagine', 'storia'))!.data;
 ---
@@ -32,7 +33,7 @@ const storia = (await getEntry('pagine', 'storia'))!.data;
           {s.foto && (
             <div class="pic">
               <Image
-                src={s.foto}
+                src={resolveImage(s.foto)!}
                 alt={s.fotoAlt ?? ''}
                 widths={[500, 800, 1100]}
                 sizes="(min-width: 860px) 520px, 92vw"

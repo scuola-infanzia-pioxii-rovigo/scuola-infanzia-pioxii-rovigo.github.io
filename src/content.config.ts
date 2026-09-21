@@ -2,17 +2,14 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const vuotoInUndefined = (v: unknown) => (v === '' || v === null ? undefined : v);
-
 const persone = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/persone' }),
-  schema: ({ image }) =>
-    z.object({
-      nome: z.string(),
-      ruolo: z.string(),
-      foto: image(),
-      ordine: z.number(),
-    }),
+  schema: z.object({
+    nome: z.string(),
+    ruolo: z.string(),
+    foto: z.string(),
+    ordine: z.number(),
+  }),
 });
 
 const progetti = defineCollection({
@@ -26,27 +23,26 @@ const progetti = defineCollection({
 
 const pagine = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/pagine' }),
-  schema: ({ image }) =>
-    z.object({
-      titolo: z.string(),
-      sottotitolo: z.string().optional(),
-      intro: z.string(),
-      foto: z.preprocess(vuotoInUndefined, image().optional()),
-      fotoAlt: z.string().optional(),
-      fatti: z.array(z.object({ valore: z.string(), etichetta: z.string() })).optional(),
-      sezioni: z
-        .array(
-          z.object({
-            titolo: z.string(),
-            testo: z.string(),
-            foto: z.preprocess(vuotoInUndefined, image().optional()),
-            fotoAlt: z.string().optional(),
-            linkEtichetta: z.string().optional(),
-            linkPercorso: z.string().optional(),
-          }),
-        )
-        .optional(),
-    }),
+  schema: z.object({
+    titolo: z.string(),
+    sottotitolo: z.string().optional(),
+    intro: z.string(),
+    foto: z.string().optional(),
+    fotoAlt: z.string().optional(),
+    fatti: z.array(z.object({ valore: z.string(), etichetta: z.string() })).optional(),
+    sezioni: z
+      .array(
+        z.object({
+          titolo: z.string(),
+          testo: z.string(),
+          foto: z.string().optional(),
+          fotoAlt: z.string().optional(),
+          linkEtichetta: z.string().optional(),
+          linkPercorso: z.string().optional(),
+        }),
+      )
+      .optional(),
+  }),
 });
 
 const impostazioni = defineCollection({

@@ -3,6 +3,7 @@ import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PersonCard from '../components/PersonCard.astro';
+import { resolveImage } from '../lib/images';
 
 const home = (await getEntry('pagine', 'home'))!.data;
 const site = (await getEntry('impostazioni', 'sito'))!.data;
@@ -19,7 +20,7 @@ const fatti = [...(home.fatti ?? []), { valore: orari, etichetta: 'Dal lunedì a
       {
         home.foto && (
           <Image
-            src={home.foto}
+            src={resolveImage(home.foto)!}
             alt={home.fotoAlt ?? ''}
             widths={[800, 1200, 1800, 2400]}
             sizes="100vw"

@@ -11,13 +11,13 @@
     {
       "titolo": "Consiglio direttivo",
       "testo": "Formato dalla coordinatrice e dai genitori della scuola che ricoprono il ruolo di Presidente, il segretario e i consiglieri.",
-      "foto": "../../assets/uploads/storia-consiglio-direttivo.webp",
+      "foto": "/src/assets/uploads/storia-consiglio-direttivo.webp",
       "fotoAlt": "Foto di gruppo del consiglio direttivo"
     },
     {
       "titolo": "Personale ausiliario",
       "testo": "Formato da una cuoca specializzata, un aiuto cuoca e un’operatrice ausiliaria.",
-      "foto": "../../assets/uploads/storia-personale-ausiliario.webp",
+      "foto": "/src/assets/uploads/storia-personale-ausiliario.webp",
       "fotoAlt": "Il personale ausiliario in cucina"
     }
   ]

@@ -1,6 +1,6 @@
 {
   "nome": "Silvia Stecca",
   "ruolo": "Educatrice per il doposcuola, formata nei bisogni dei bambini nella fascia d’età 6-10 anni.",
-  "foto": "../../assets/uploads/persona-silvia-stecca.webp",
+  "foto": "/src/assets/uploads/persona-silvia-stecca.webp",
   "ordine": 6
 }

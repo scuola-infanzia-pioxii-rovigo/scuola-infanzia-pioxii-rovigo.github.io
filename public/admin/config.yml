@@ -13,7 +13,7 @@ display_url: https://scuola-infanzia-pioxii-rovigo.github.io
 local_backend: true
 
 media_folder: src/assets/uploads
-public_folder: ../../assets/uploads
+public_folder: /src/assets/uploads
 
 collections:
   - name: pagine

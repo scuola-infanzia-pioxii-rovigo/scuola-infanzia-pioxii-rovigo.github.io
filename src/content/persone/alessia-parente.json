@@ -1,6 +1,6 @@
 {
   "nome": "Alessia Parente",
   "ruolo": "Insegnante abilitata all’insegnamento per la scuola dell’infanzia.",
-  "foto": "../../assets/uploads/persona-alessia-parente.webp",
+  "foto": "/src/assets/uploads/persona-alessia-parente.webp",
   "ordine": 3
 }

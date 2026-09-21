@@ -1,6 +1,6 @@
 {
   "nome": "Giorgia Sigolo",
   "ruolo": "Educatrice per il doposcuola, formata nei bisogni dei bambini nella fascia d’età 6-10 anni.",
-  "foto": "../../assets/uploads/persona-giorgia-sigolo.webp",
+  "foto": "/src/assets/uploads/persona-giorgia-sigolo.webp",
   "ordine": 8
 }

@@ -1,6 +1,6 @@
 {
   "nome": "Beatrice Tomasi",
   "ruolo": "Educatrice per il doposcuola, formata nei bisogni dei bambini nella fascia d’età 6-10 anni.",
-  "foto": "../../assets/uploads/persona-beatrice-tomasi.webp",
+  "foto": "/src/assets/uploads/persona-beatrice-tomasi.webp",
   "ordine": 9
 }
