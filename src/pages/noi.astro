@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PersonCard from '../components/PersonCard.astro';
+
+const persone = (await getCollection('persone')).sort((a, b) => a.data.ordine - b.data.ordine);
+---
+
+<Layout
+  title="Queste siamo noi"
+  description="Le insegnanti e le educatrici della scuola dell’infanzia Pio XII di Rovigo: coordinatrice, sezione primavera e doposcuola."
+>
+  <div class="wrap page-head">
+    <p class="eyebrow">Le persone</p>
+    <h1>Queste siamo noi</h1>
+  </div>
+  <div class="wrap" style="padding-bottom:clamp(3.5rem,8vw,6rem)">
+    <div class="people-grid wide">
+      {persone.map((p) => <PersonCard persona={p} />)}
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,48 @@
+---
+import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+const storia = (await getEntry('pagine', 'storia'))!.data;
+---
+
+<Layout
+  title="Storia e Volti"
+  description="La storia della scuola dell’infanzia Pio XII di Rovigo, nata nel 1981: corpo docente, consiglio direttivo e personale ausiliario."
+>
+  <div class="wrap page-head">
+    <p class="eyebrow">Storia e Volti</p>
+    <h1>{storia.titolo}</h1>
+    <p class="story-intro" style="margin-top:1.75rem">{storia.intro}</p>
+  </div>
+
+  <div class="wrap" style="padding-bottom:clamp(3rem,7vw,5rem)">
+    {
+      storia.sezioni?.map((s) => (
+        <section class:list={['split', { 'has-pic': !!s.foto }]}>
+          <div class="text">
+            <h2>{s.titolo}</h2>
+            <p>{s.testo}</p>
+            {s.linkPercorso && (
+              <a class="arrow-link" href={s.linkPercorso}>
+                {s.linkEtichetta ?? 'Scopri di più'} <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </div>
+          {s.foto && (
+            <div class="pic">
+              <Image
+                src={s.foto}
+                alt={s.fotoAlt ?? ''}
+                widths={[500, 800, 1100]}
+                sizes="(min-width: 860px) 520px, 92vw"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+        </section>
+      ))
+    }
+  </div>
+</Layout>

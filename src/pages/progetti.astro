@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const progetti = (await getCollection('progetti')).sort((a, b) => a.data.ordine - b.data.ordine);
+---
+
+<Layout
+  title="I nostri progetti"
+  description="Inglese emozionale, musica, coding, yoga, attività motoria, progetto orto e altro: i progetti didattici della scuola dell’infanzia Pio XII di Rovigo."
+>
+  <div class="wrap page-head">
+    <p class="eyebrow">Cosa facciamo</p>
+    <h1>I nostri progetti</h1>
+  </div>
+  <div class="wrap cards">
+    {
+      progetti.map((p, i) => (
+        <article class="card" id={p.id}>
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <h2>{p.data.titolo}</h2>
+          <p>{p.data.descrizione}</p>
+        </article>
+      ))
+    }
+  </div>
+</Layout>

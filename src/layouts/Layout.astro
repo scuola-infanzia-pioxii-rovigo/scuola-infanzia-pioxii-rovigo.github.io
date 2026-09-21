@@ -1,0 +1,163 @@
+---
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/figtree';
+import '../styles/global.css';
+import { getEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+import ogDefault from '../assets/uploads/scuola-facciata.webp';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const site = (await getEntry('impostazioni', 'sito'))!.data;
+const { title, description = site.descrizione, noindex = false } = Astro.props;
+
+const fullTitle = title ? `${title} · ${site.nome}, ${site.citta}` : `${site.nome}, ${site.citta}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const og = await getImage({ src: ogDefault, width: 1200, height: 630, format: 'jpg' });
+const ogUrl = new URL(og.src, Astro.site).href;
+
+const nav = [
+  { label: 'Home', href: '/' },
+  { label: 'Progetti', href: '/progetti/' },
+  { label: 'Storia e Volti', href: '/storia/' },
+  { label: 'Queste siamo noi', href: '/noi/' },
+];
+const current = (href: string) => (Astro.url.pathname === href ? 'page' : undefined);
+
+const tel = (n: string) => `tel:+39${n.replace(/\D/g, '')}`;
+const orari = `Lun–ven ${site.apertura.replace(/^0/, '')}–${site.chiusura}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Preschool',
+  name: site.nome,
+  description: site.descrizione,
+  url: Astro.site!.href,
+  image: ogUrl,
+  telephone: `+39${site.telefoni[0].numero.replace(/\D/g, '')}`,
+  email: site.email[0].indirizzo,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.indirizzo,
+    postalCode: site.cap,
+    addressLocality: site.citta,
+    addressCountry: 'IT',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: site.apertura,
+    closes: site.chiusura,
+  },
+  sameAs: site.social.map((s) => s.url),
+};
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#1c4fa0" />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content={site.nome} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip" href="#contenuto">Vai al contenuto</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label={`${site.nome}, ${site.citta} – home`}>
+          <small>Scuola dell’infanzia</small>
+          <strong>Pio XII</strong>
+        </a>
+
+        <nav class="nav-desktop" aria-label="Principale">
+          {nav.map((n) => <a href={n.href} aria-current={current(n.href)}>{n.label}</a>)}
+        </nav>
+
+        <details class="nav-mobile">
+          <summary>Menu</summary>
+          <nav class="panel" aria-label="Principale">
+            {nav.map((n) => <a href={n.href} aria-current={current(n.href)}>{n.label}</a>)}
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="contenuto">
+      <slot />
+    </main>
+
+    <footer class="site-footer" id="contatti">
+      <div class="wrap contact">
+        <div>
+          <p class="eyebrow">Contatti</p>
+          <h2 style="margin-top:.9rem">Vieni a trovarci</h2>
+          <p style="margin-top:1.25rem;color:rgba(251,248,242,.8)">
+            Per informazioni e iscrizioni, chiamaci o scrivici: ti risponderemo volentieri.
+          </p>
+          <a class="btn btn-primary" style="margin-top:1.75rem" href={site.mappa} rel="noopener">
+            Apri su Google Maps
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="contact-cols">
+          <div class="col">
+            <h3>Dove</h3>
+            <address>
+              {site.indirizzo}<br />
+              {site.cap} {site.citta}
+            </address>
+            <h3 style="margin-top:1.5rem">Orari</h3>
+            <p>{orari}</p>
+            <h3 style="margin-top:1.5rem">Social</h3>
+            <div class="col-list">
+              {site.social.map((s) => <a href={s.url} rel="noopener">{s.etichetta}</a>)}
+            </div>
+          </div>
+          <div class="col">
+            <h3>Telefono</h3>
+            <div class="col-list">
+              {site.telefoni.map((t) => <a href={tel(t.numero)}>{t.numero}</a>)}
+            </div>
+            <h3 style="margin-top:1.5rem">Email</h3>
+            <div class="col-list">
+              {site.email.map((e) => (
+                <div>
+                  <small>{e.etichetta}</small>
+                  <a href={`mailto:${e.indirizzo}`}>{e.indirizzo}</a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="legal">
+        <div class="wrap">
+          <span>© {new Date().getFullYear()} {site.nome}, {site.citta}</span>
+          <span>Questo sito non usa cookie né strumenti di tracciamento.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "titolo": "La nostra storia",
+  "intro": "La scuola dell’infanzia Pio XII nasce a Rovigo nel 1981, anno in cui la Federazione Italiana Scuole Materne (FISM) ha riconosciuto in questa realtà non parrocchiale un’esperienza alternativa di gestione della scuola all’interno del mondo cattolico, in conformità ai principi della Costituzione e nel quadro degli Orientamenti didattici ministeriali. L’autogestione e la partecipazione attiva dei genitori nell’ambiente educativo/scolastico sono rimaste le basi fondamentali della nostra scuola.",
+  "sezioni": [
+    {
+      "titolo": "Corpo docente",
+      "testo": "Formato dalla coordinatrice, da insegnanti abilitate all’insegnamento alla scuola dell’infanzia e da educatrici formate all’insegnamento per il servizio doposcuola.",
+      "linkEtichetta": "Conosci le insegnanti e le educatrici",
+      "linkPercorso": "/noi/"
+    },
+    {
+      "titolo": "Consiglio direttivo",
+      "testo": "Formato dalla coordinatrice e dai genitori della scuola che ricoprono il ruolo di Presidente, il segretario e i consiglieri.",
+      "foto": "../../assets/uploads/storia-consiglio-direttivo.webp",
+      "fotoAlt": "Foto di gruppo del consiglio direttivo"
+    },
+    {
+      "titolo": "Personale ausiliario",
+      "testo": "Formato da una cuoca specializzata, un aiuto cuoca e un’operatrice ausiliaria.",
+      "foto": "../../assets/uploads/storia-personale-ausiliario.webp",
+      "fotoAlt": "Il personale ausiliario in cucina"
+    }
+  ]
+}

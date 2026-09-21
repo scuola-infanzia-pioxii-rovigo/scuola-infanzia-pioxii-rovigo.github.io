@@ -1,0 +1,107 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import PersonCard from '../components/PersonCard.astro';
+
+const home = (await getEntry('pagine', 'home'))!.data;
+const site = (await getEntry('impostazioni', 'sito'))!.data;
+const progetti = (await getCollection('progetti')).sort((a, b) => a.data.ordine - b.data.ordine);
+const persone = (await getCollection('persone')).sort((a, b) => a.data.ordine - b.data.ordine).slice(0, 4);
+
+const orari = `${site.apertura.replace(/^0/, '')}–${site.chiusura}`;
+const fatti = [...(home.fatti ?? []), { valore: orari, etichetta: 'Dal lunedì al venerdì' }];
+---
+
+<Layout>
+  <section class="hero">
+    <div class="hero-img">
+      {
+        home.foto && (
+          <Image
+            src={home.foto}
+            alt={home.fotoAlt ?? ''}
+            widths={[800, 1200, 1800, 2400]}
+            sizes="100vw"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        )
+      }
+    </div>
+    <div class="wrap">
+      <p class="eyebrow">Rovigo · dal 1981</p>
+      <h1>{home.titolo}</h1>
+      <p class="lede">{home.sottotitolo}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/progetti/">Scopri i progetti</a>
+        <a class="btn btn-ghost" href="#contatti">Vieni a trovarci</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" aria-label="In breve">
+    <div class="wrap">
+      <ul>
+        {
+          fatti.map((f) => (
+            <li>
+              <strong>{f.valore}</strong>
+              <span>{f.etichetta}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap intro-grid">
+      <p class="eyebrow">Chi siamo</p>
+      <div>
+        <p class="intro-text">{home.intro}</p>
+        <p style="margin-top:2rem"><a class="arrow-link" href="/storia/">Leggi la nostra storia <span aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="projects-head">
+        <div>
+          <p class="eyebrow">Cosa facciamo</p>
+          <h2 class="section-title" style="margin-top:.75rem">I nostri progetti</h2>
+        </div>
+        <a class="arrow-link" href="/progetti/">Tutti i progetti <span aria-hidden="true">→</span></a>
+      </div>
+      <ol class="project-index">
+        {
+          progetti.map((p, i) => (
+            <li>
+              <a href={`/progetti/#${p.id}`}>
+                {p.data.titolo}
+                <span>{String(i + 1).padStart(2, '0')}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap people-teaser">
+      <div class="people-head">
+        <div>
+          <p class="eyebrow">Le persone</p>
+          <h2 class="section-title" style="margin-top:.75rem">Queste siamo noi</h2>
+        </div>
+        <a class="arrow-link" href="/noi/">Conosci tutto il team <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="people-grid">
+        {persone.map((p) => <PersonCard persona={p} sizes="(min-width: 1000px) 260px, 45vw" />)}
+      </div>
+    </div>
+  </section>
+</Layout>

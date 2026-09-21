@@ -1,0 +1,40 @@
+{
+  "nome": "Scuola dell’infanzia Pio XII",
+  "citta": "Rovigo",
+  "indirizzo": "Vicolo Ciro Menotti 7",
+  "cap": "45100",
+  "telefoni": [
+    {
+      "etichetta": "Telefono",
+      "numero": "0425 200028"
+    },
+    {
+      "etichetta": "Cellulare",
+      "numero": "328 746 6654"
+    }
+  ],
+  "email": [
+    {
+      "etichetta": "Email",
+      "indirizzo": "scuolainfanzia.ro@libero.it"
+    },
+    {
+      "etichetta": "PEC",
+      "indirizzo": "scuolainfanzia.ro@pec.it"
+    }
+  ],
+  "apertura": "07:30",
+  "chiusura": "18:00",
+  "mappa": "https://maps.app.goo.gl/2dRmHJA5uxVqMksL6",
+  "social": [
+    {
+      "etichetta": "Facebook",
+      "url": "https://www.facebook.com/scuolainfanziapioxii/"
+    },
+    {
+      "etichetta": "Instagram",
+      "url": "https://www.instagram.com/scuolainfanziapioxII/"
+    }
+  ],
+  "descrizione": "Scuola dell’infanzia autogestita a Rovigo dal 1981: progetti didattici, insegnanti abilitate, sezione primavera e doposcuola. Vicolo Ciro Menotti 7."
+}

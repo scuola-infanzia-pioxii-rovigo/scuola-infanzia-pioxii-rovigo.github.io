@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  persona: CollectionEntry<'persone'>;
+  sizes?: string;
+}
+
+const { persona, sizes = '(min-width: 1000px) 260px, (min-width: 520px) 33vw, 90vw' } = Astro.props;
+const { nome, ruolo, foto } = persona.data;
+---
+
+<article class="person">
+  <div class="photo">
+    <Image
+      src={foto}
+      alt={`Ritratto di ${nome}`}
+      widths={[260, 400, 560]}
+      sizes={sizes}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div>
+    <h3>{nome}</h3>
+    <p>{ruolo}</p>
+  </div>
+</article>

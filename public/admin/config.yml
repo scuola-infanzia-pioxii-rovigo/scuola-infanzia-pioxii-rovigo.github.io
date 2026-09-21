@@ -1,0 +1,119 @@
+# Configurazione compatibile sia con Sveltia CMS (usato) sia con Decap CMS.
+backend:
+  name: github
+  repo: scuola-infanzia-pioxii-rovigo/scuola-infanzia-pioxii-rovigo.github.io
+  branch: main
+  # Per il login "con un click" serve un piccolo proxy OAuth (vedi README).
+  # Senza, si entra incollando un token personale GitHub.
+  # base_url: https://URL-DEL-PROXY-OAUTH
+
+locale: it
+site_url: https://scuola-infanzia-pioxii-rovigo.github.io
+display_url: https://scuola-infanzia-pioxii-rovigo.github.io
+local_backend: true
+
+media_folder: src/assets/uploads
+public_folder: ../../assets/uploads
+
+collections:
+  - name: pagine
+    label: Pagine
+    files:
+      - name: home
+        label: Home
+        file: src/content/pagine/home.json
+        fields:
+          - { name: titolo, label: Titolo, widget: string }
+          - { name: sottotitolo, label: Frase sotto il titolo, widget: string }
+          - { name: foto, label: Foto grande in alto, widget: image }
+          - { name: fotoAlt, label: Descrizione della foto (per chi non la vede), widget: string }
+          - { name: intro, label: Testo di presentazione, widget: text }
+          - name: fatti
+            label: Numeri in evidenza
+            widget: list
+            fields:
+              - { name: valore, label: Valore (es. 1981), widget: string }
+              - { name: etichetta, label: Spiegazione, widget: string }
+      - name: storia
+        label: Storia e Volti
+        file: src/content/pagine/storia.json
+        fields:
+          - { name: titolo, label: Titolo, widget: string }
+          - { name: intro, label: Testo introduttivo, widget: text }
+          - name: sezioni
+            label: Sezioni
+            widget: list
+            fields:
+              - { name: titolo, label: Titolo, widget: string }
+              - { name: testo, label: Testo, widget: text }
+              - { name: foto, label: Foto, widget: image, required: false }
+              - { name: fotoAlt, label: Descrizione della foto, widget: string, required: false }
+              - { name: linkEtichetta, label: Testo del link (facoltativo), widget: string, required: false }
+              - { name: linkPercorso, label: Pagina a cui porta il link (es. /noi/), widget: string, required: false }
+
+  - name: progetti
+    label: Progetti
+    label_singular: Progetto
+    folder: src/content/progetti
+    extension: json
+    format: json
+    create: true
+    identifier_field: titolo
+    slug: '{{slug}}'
+    summary: '{{ordine}} · {{titolo}}'
+    sortable_fields: [ordine, titolo]
+    fields:
+      - { name: titolo, label: Nome del progetto, widget: string }
+      - { name: descrizione, label: Descrizione, widget: text }
+      - { name: ordine, label: Posizione nell'elenco (1 = primo), widget: number, value_type: int, min: 1 }
+
+  - name: persone
+    label: Persone
+    label_singular: Persona
+    folder: src/content/persone
+    extension: json
+    format: json
+    create: true
+    identifier_field: nome
+    slug: '{{slug}}'
+    summary: '{{ordine}} · {{nome}}'
+    sortable_fields: [ordine, nome]
+    fields:
+      - { name: nome, label: Nome e cognome, widget: string }
+      - { name: ruolo, label: Ruolo, widget: text }
+      - { name: foto, label: Foto, widget: image }
+      - { name: ordine, label: Posizione nell'elenco (1 = prima), widget: number, value_type: int, min: 1 }
+
+  - name: impostazioni
+    label: Contatti e orari
+    files:
+      - name: sito
+        label: Contatti, orari e social
+        file: src/content/impostazioni/sito.json
+        fields:
+          - { name: nome, label: Nome della scuola, widget: string }
+          - { name: citta, label: Città, widget: string }
+          - { name: indirizzo, label: Indirizzo, widget: string }
+          - { name: cap, label: CAP, widget: string }
+          - name: telefoni
+            label: Telefoni
+            widget: list
+            fields:
+              - { name: etichetta, label: Etichetta (es. Telefono), widget: string }
+              - { name: numero, label: Numero, widget: string }
+          - name: email
+            label: Email
+            widget: list
+            fields:
+              - { name: etichetta, label: Etichetta (es. PEC), widget: string }
+              - { name: indirizzo, label: Indirizzo email, widget: string }
+          - { name: apertura, label: Orario di apertura (es. 07:30), widget: string }
+          - { name: chiusura, label: Orario di chiusura (es. 18:00), widget: string }
+          - { name: mappa, label: Link Google Maps, widget: string }
+          - name: social
+            label: Social
+            widget: list
+            fields:
+              - { name: etichetta, label: Nome (es. Instagram), widget: string }
+              - { name: url, label: Indirizzo del profilo, widget: string }
+          - { name: descrizione, label: Descrizione per Google (1-2 frasi), widget: text }
