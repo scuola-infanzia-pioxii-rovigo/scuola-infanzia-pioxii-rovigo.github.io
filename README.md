@@ -40,7 +40,9 @@ Lo schema dei contenuti è in `src/content.config.ts`: se cambia un campo va agg
 
 ## Accesso al pannello `/admin/`
 
-Il login "con un click" su GitHub richiede un piccolo servizio OAuth esterno che GitHub Pages non può ospitare (previsto su Cloudflare Workers, vedi `docs/DECISIONI.md`). Finché non è configurato si entra con un token personale (Fine-grained, permesso *Contents: Read and write* su questo repository), incollandolo alla schermata di accesso. Per attivare il login normale: pubblicare un proxy OAuth (ad esempio [sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) su Cloudflare Workers), registrare una OAuth App su GitHub e decommentare `base_url` in `public/admin/config.yml`.
+Il login "Accedi con GitHub" è attivo: chi accede deve avere un account GitHub con permesso di scrittura su questo repository (aggiungerlo dalle impostazioni dell'organizzazione).
+
+Come funziona dietro le quinte: un piccolo servizio ([sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth)) pubblicato su Cloudflare Workers all'indirizzo `https://sveltia-cms-auth.scuolainfanzia-ro.workers.dev` fa da tramite con una OAuth App GitHub registrata nell'organizzazione ("Accesso al pannello del sito"). Client ID e Client Secret sono impostati come variabili del Worker su Cloudflare, non nel repository. Resta comunque disponibile "Accedi con Token di Accesso" come alternativa.
 
 ## Foto e privacy
 

@@ -17,7 +17,7 @@ Il sito Squarespace precedente non veniva aggiornato dalle insegnanti, non era i
 | 5 | Proprietà | GitHub Organization `scuola-infanzia-pioxii-rovigo` (piano Free) | Il repo non dipende da un account personale. Per passare la gestione alla scuola basta aggiungere un Owner con una loro utenza e poi uscire. Deve sempre restare almeno un Owner. | 2026-09-21 |
 | 6 | Dominio | Nessun dominio a pagamento per ora, si usa `scuola-infanzia-pioxii-rovigo.github.io` | Scelta del referente: partire gratis. Se in futuro si compra un dominio si collega senza rifare nulla. Rinominare l'organizzazione cambierebbe l'URL. | 2026-09-21 |
 | 7 | Chi può modificare | Serve un account GitHub (gratuito) con permesso di scrittura sul repo. Consigliato un solo account condiviso della scuola. | Il CMS salva direttamente nel repository. | 2026-09-21 |
-| 8 | Accesso al CMS | Oggi: token personale GitHub ("Accedi con Token di Accesso"). Obiettivo: login "Accedi con GitHub" tramite proxy OAuth su **Cloudflare Workers** ([sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth)). | GitHub non permette il login OAuth dal solo browser, serve un piccolo servizio. Scelto Cloudflare al posto di Render: l'account può essere intestato alla scuola e non ha avvii lenti. Render (già usato per Masarà) avrebbe legato il servizio all'account personale del referente. | 2026-09-21 |
+| 8 | Accesso al CMS | Login "Accedi con GitHub" attivo, tramite proxy OAuth su **Cloudflare Workers** ([sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth), account Cloudflare `scuolainfanzia.ro@libero.it`) all'indirizzo `sveltia-cms-auth.scuolainfanzia-ro.workers.dev`, con una OAuth App GitHub ("Accesso al pannello del sito") registrata nell'organizzazione. Resta disponibile anche "Accedi con Token di Accesso". | GitHub non permette il login OAuth dal solo browser, serve un piccolo servizio. Scelto Cloudflare al posto di Render: l'account è intestato alla scuola fin da subito e non ha avvii lenti. Render (già usato per Masarà) avrebbe legato il servizio all'account personale del referente. | 2026-09-23 |
 | 9 | Link al pannello | Link "Accesso riservato" nel footer verso `/admin/`, con `rel="nofollow"`, escluso da `robots.txt` | Le insegnanti trovano il login senza conoscere l'indirizzo. | 2026-09-21 |
 | 10 | Foto | Usate solo foto reali già pubblicate sul vecchio sito: facciata, ritratti del personale, due foto della pagina Storia. Le 12 foto dei "Progetti" erano immagini stock e non sono state riprese. | Le foto generiche non rappresentano la scuola. | 2026-09-21 |
 | 11 | Repository pubblico | Il repo resta pubblico | GitHub Pages gratuito funziona solo con repo pubblici. Renderlo privato spegnerebbe il sito, salvo passare a un piano GitHub a pagamento (Team) o spostare l'hosting (ad esempio su Cloudflare Pages, che supporta repo privati). Tutto ciò che è nel repo è già visibile sul sito. | 2026-09-21 |
@@ -25,8 +25,8 @@ Il sito Squarespace precedente non veniva aggiornato dalle insegnanti, non era i
 
 ## Da fare
 
-- Attivare il login "Accedi con GitHub": Worker su Cloudflare, OAuth App GitHub creata nell'organizzazione, `base_url` in `public/admin/config.yml`.
 - Provare il salvataggio dal pannello fino in fondo (mai testato con un accesso reale).
+- Aggiungere gli account GitHub delle insegnanti all'organizzazione con permesso di scrittura sul repo.
 - Confermare con la scuola testi e permesso di pubblicazione delle foto del personale.
 - Registrare il sito su Google Search Console e inviare `sitemap-index.xml`.
 - Valutare un dominio proprio e un indirizzo email associato.

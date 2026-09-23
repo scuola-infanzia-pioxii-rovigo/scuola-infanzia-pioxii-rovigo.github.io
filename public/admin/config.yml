@@ -3,9 +3,7 @@ backend:
   name: github
   repo: scuola-infanzia-pioxii-rovigo/scuola-infanzia-pioxii-rovigo.github.io
   branch: main
-  # Per il login "con un click" serve un piccolo proxy OAuth (vedi README).
-  # Senza, si entra incollando un token personale GitHub.
-  # base_url: https://URL-DEL-PROXY-OAUTH
+  base_url: https://sveltia-cms-auth.scuolainfanzia-ro.workers.dev
 
 locale: it
 site_url: https://scuola-infanzia-pioxii-rovigo.github.io
