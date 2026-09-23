@@ -22,10 +22,10 @@ Il sito Squarespace precedente non veniva aggiornato dalle insegnanti, non era i
 | 10 | Foto | Usate solo foto reali già pubblicate sul vecchio sito: facciata, ritratti del personale, due foto della pagina Storia. Le 12 foto dei "Progetti" erano immagini stock e non sono state riprese. | Le foto generiche non rappresentano la scuola. | 2026-09-21 |
 | 11 | Repository pubblico | Il repo resta pubblico | GitHub Pages gratuito funziona solo con repo pubblici. Renderlo privato spegnerebbe il sito, salvo passare a un piano GitHub a pagamento (Team) o spostare l'hosting (ad esempio su Cloudflare Pages, che supporta repo privati). Tutto ciò che è nel repo è già visibile sul sito. | 2026-09-21 |
 | 12 | Privacy | Nessun cookie, nessuno strumento di tracciamento, nessun font o script di terze parti nelle pagine pubbliche | Nessun banner cookie necessario. Unica eccezione: `/admin/` carica il CMS da unpkg.com. | 2026-09-21 |
+| 13 | Verifica login e salvataggio | Testato con un vero account GitHub: login OAuth, modifica di un testo dal pannello, commit automatico, ripubblicazione. Tutto funzionante. | Era l'unico punto del flusso mai provato con un accesso reale. | 2026-09-23 |
 
 ## Da fare
 
-- Provare il salvataggio dal pannello fino in fondo (mai testato con un accesso reale).
 - Aggiungere gli account GitHub delle insegnanti all'organizzazione con permesso di scrittura sul repo.
 - Confermare con la scuola testi e permesso di pubblicazione delle foto del personale.
 - Registrare il sito su Google Search Console e inviare `sitemap-index.xml`.
