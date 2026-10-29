@@ -4,7 +4,7 @@ import '@fontsource-variable/figtree';
 import '../styles/global.css';
 import { getEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
-import ogDefault from '../assets/uploads/scuola-facciata.webp';
+import ogDefault from '../assets/uploads/scuola-facciata-nuova.webp';
 
 interface Props {
   title?: string;
@@ -17,7 +17,7 @@ const { title, description = site.descrizione, noindex = false } = Astro.props;
 
 const fullTitle = title ? `${title} · ${site.nome}, ${site.citta}` : `${site.nome}, ${site.citta}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const og = await getImage({ src: ogDefault, width: 1200, height: 630, format: 'jpg' });
+const og = await getImage({ src: ogDefault, width: 1200, height: 630, format: 'jpg', position: 'bottom' });
 const ogUrl = new URL(og.src, Astro.site).href;
 
 const nav = [
