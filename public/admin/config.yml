@@ -6,8 +6,8 @@ backend:
   base_url: https://sveltia-cms-auth.scuolainfanzia-ro.workers.dev
 
 locale: it
-site_url: https://scuola-infanzia-pioxii-rovigo.github.io
-display_url: https://scuola-infanzia-pioxii-rovigo.github.io
+site_url: https://pioxiirovigo.it
+display_url: https://pioxiirovigo.it
 local_backend: true
 
 media_folder: src/assets/uploads

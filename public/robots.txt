@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://scuola-infanzia-pioxii-rovigo.github.io/sitemap-index.xml
+Sitemap: https://pioxiirovigo.it/sitemap-index.xml

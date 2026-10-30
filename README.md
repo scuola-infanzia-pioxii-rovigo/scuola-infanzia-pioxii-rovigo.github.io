@@ -2,7 +2,7 @@
 
 Sito statico costruito con [Astro](https://astro.build), contenuti modificabili da un pannello (Sveltia CMS, compatibile con Decap CMS) e pubblicazione automatica su GitHub Pages.
 
-URL: <https://scuola-infanzia-pioxii-rovigo.github.io/>
+URL: <https://pioxiirovigo.it/>
 
 Le scelte fatte e i motivi sono in [`docs/DECISIONI.md`](docs/DECISIONI.md), con l'elenco di ciò che resta da fare.
 

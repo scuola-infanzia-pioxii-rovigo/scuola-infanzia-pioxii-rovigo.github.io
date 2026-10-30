@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://scuola-infanzia-pioxii-rovigo.github.io',
+  site: 'https://pioxiirovigo.it',
   trailingSlash: 'always',
   integrations: [sitemap()],
 });
