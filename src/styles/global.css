@@ -734,28 +734,26 @@ p {
   padding-bottom: clamp(3.5rem, 8vw, 6rem);
 }
 .doc-card {
+  position: relative;
+  overflow: hidden;
   background: var(--white);
-  border: 1px solid var(--line);
+  box-shadow: 0 0 0 1px var(--line);
   border-radius: var(--radius);
-  padding: 1.75rem;
+  padding: 2.25rem 1.75rem 1.75rem;
   display: grid;
   gap: 0.75rem;
   justify-items: start;
 }
 .doc-card::before {
   content: '';
-  display: block;
-  width: 100%;
+  position: absolute;
+  inset: 0 0 auto 0;
   height: 6px;
-  margin: -1.75rem -1.75rem 0.25rem;
-  width: calc(100% + 3.5rem);
-  border-radius: var(--radius) var(--radius) 0 0;
   background: linear-gradient(90deg, var(--blue) 0 33.3%, var(--orange) 33.3% 66.6%, var(--sun) 66.6%);
 }
 .doc-icon {
   width: 2.5rem;
   height: auto;
-  margin-top: 0.5rem;
 }
 .doc-card h2 {
   font-size: 1.5rem;
