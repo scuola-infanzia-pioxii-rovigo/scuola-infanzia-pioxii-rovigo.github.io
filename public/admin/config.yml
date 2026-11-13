@@ -49,6 +49,33 @@ collections:
               - { name: linkEtichetta, label: Testo del link (facoltativo), widget: string, required: false }
               - { name: linkPercorso, label: Pagina a cui porta il link (es. /noi/), widget: string, required: false }
 
+  - name: documenti
+    label: Documenti
+    files:
+      - name: parita-di-genere
+        label: Politica per la parità di genere
+        file: src/content/documenti/parita-di-genere.json
+        fields:
+          - { name: titolo, label: Titolo della pagina, widget: string }
+          - { name: etichetta, label: Scritta sopra il titolo, widget: string }
+          - { name: sottotitolo, label: Sottotitolo, widget: string }
+          - { name: descrizione, label: Descrizione per Google (1-2 frasi), widget: text }
+          - { name: pdf, label: Percorso del PDF (cambiarlo solo se il file è stato sostituito), widget: string }
+          - name: sezioni
+            label: Sezioni
+            widget: list
+            fields:
+              - { name: titolo, label: Titolo della sezione, widget: string }
+              - { name: testo, label: Testo (per andare a capo in un nuovo paragrafo lasciare una riga vuota), widget: text }
+              - name: punti
+                label: Elenco puntato (facoltativo)
+                widget: list
+                required: false
+                fields:
+                  - { name: titolo, label: Impegno (in grassetto), widget: string }
+                  - { name: testo, label: Come (segue dopo la virgola), widget: text }
+              - { name: testoDopo, label: Testo dopo l'elenco (facoltativo), widget: text, required: false }
+
   - name: progetti
     label: Progetti
     label_singular: Progetto

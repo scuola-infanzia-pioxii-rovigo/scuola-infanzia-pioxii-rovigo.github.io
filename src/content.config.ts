@@ -62,4 +62,23 @@ const impostazioni = defineCollection({
   }),
 });
 
-export const collections = { persone, progetti, pagine, impostazioni };
+const documenti = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/content/documenti' }),
+  schema: z.object({
+    titolo: z.string(),
+    etichetta: z.string(),
+    sottotitolo: z.string(),
+    descrizione: z.string(),
+    pdf: z.string(),
+    sezioni: z.array(
+      z.object({
+        titolo: z.string(),
+        testo: z.string(),
+        punti: z.array(z.object({ titolo: z.string(), testo: z.string() })).optional(),
+        testoDopo: z.string().optional(),
+      }),
+    ),
+  }),
+});
+
+export const collections = { persone, progetti, pagine, impostazioni, documenti };

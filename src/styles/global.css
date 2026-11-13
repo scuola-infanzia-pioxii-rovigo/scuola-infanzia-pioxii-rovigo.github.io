@@ -726,3 +726,127 @@ p {
 .notfound h1 {
   font-size: clamp(2.6rem, 6vw, 4.6rem);
 }
+
+/* ---------- Documento (politica parità di genere) ---------- */
+.doc {
+  display: grid;
+  gap: 2rem;
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+.doc-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+.doc-card::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin: -1.75rem -1.75rem 0.25rem;
+  width: calc(100% + 3.5rem);
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: linear-gradient(90deg, var(--blue) 0 33.3%, var(--orange) 33.3% 66.6%, var(--sun) 66.6%);
+}
+.doc-icon {
+  width: 2.5rem;
+  height: auto;
+  margin-top: 0.5rem;
+}
+.doc-card h2 {
+  font-size: 1.5rem;
+}
+.doc-meta {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+}
+.doc-section {
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--line);
+}
+.doc-section:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.doc-section h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+.doc-num {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #b8480f;
+}
+.doc-section p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  max-width: 38em;
+}
+.doc-section p + p,
+.doc-points + p {
+  margin-top: 1rem;
+}
+.doc-section h2 + p + .doc-points {
+  margin-top: 1rem;
+}
+.doc-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+  max-width: 38em;
+}
+.doc-points li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+.doc-points li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.62em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--orange);
+}
+.doc-points li:nth-child(3n + 1)::before {
+  background: var(--blue);
+}
+.doc-points li:nth-child(3n)::before {
+  background: var(--sun);
+}
+.doc-points strong {
+  font-weight: 700;
+}
+@media (min-width: 960px) {
+  .doc {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .doc-aside {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+  }
+  .doc-body {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

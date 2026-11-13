@@ -1,0 +1,60 @@
+---
+import fs from 'node:fs';
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const doc = (await getEntry('documenti', 'parita-di-genere'))!.data;
+
+const kb = Math.round(fs.statSync(`public${doc.pdf}`).size / 1024);
+const paragrafi = (testo: string) => testo.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+---
+
+<Layout title={doc.titolo} description={doc.descrizione}>
+  <div class="wrap page-head">
+    <p class="eyebrow">{doc.etichetta}</p>
+    <h1>{doc.titolo}</h1>
+    <p class="lede">{doc.sottotitolo}</p>
+  </div>
+
+  <div class="wrap doc">
+    <aside class="doc-aside">
+      <div class="doc-card">
+        <svg class="doc-icon" viewBox="0 0 40 48" aria-hidden="true">
+          <path d="M4 4a4 4 0 0 1 4-4h18l10 10v34a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V4Z" fill="#fff" stroke="#1c4fa0" stroke-width="2.5" />
+          <path d="M26 0v8a2 2 0 0 0 2 2h8" fill="none" stroke="#1c4fa0" stroke-width="2.5" />
+          <rect x="9" y="30" width="22" height="8" rx="2" fill="#e4692a" />
+          <text x="20" y="36.6" text-anchor="middle" font-size="6.5" font-weight="700" font-family="Figtree Variable, sans-serif" fill="#fff">PDF</text>
+        </svg>
+        <h2>Scarica il documento</h2>
+        <p class="doc-meta">{doc.titolo} · PDF, {kb} KB</p>
+        <a class="btn btn-dark" href={doc.pdf} download>
+          Scarica il PDF <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </aside>
+
+    <article class="doc-body">
+      {
+        doc.sezioni.map((s, i) => (
+          <section class="doc-section">
+            <h2>
+              <span class="doc-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              {s.titolo}
+            </h2>
+            {paragrafi(s.testo).map((p) => <p>{p}</p>)}
+            {s.punti && (
+              <ul class="doc-points">
+                {s.punti.map((pt) => (
+                  <li>
+                    <strong>{pt.titolo}</strong>, {pt.testo}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {s.testoDopo && paragrafi(s.testoDopo).map((p) => <p>{p}</p>)}
+          </section>
+        ))
+      }
+    </article>
+  </div>
+</Layout>
